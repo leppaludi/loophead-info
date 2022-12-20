@@ -47,7 +47,8 @@ export const getServerSideProps: GetServerSideProps<
   };
 };
 
-const IPFS_URL = "https://cloudflare-ipfs.com/ipfs/";
+// const IPFS_URL = "https://cloudflare-ipfs.com/ipfs/";
+const IPFS_URL = "https://loopring.mypinata.cloud/ipfs/";
 
 const ipfsImageToUrl = (img: string, background: number, brain: number) => {
   const regex =
