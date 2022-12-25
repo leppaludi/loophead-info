@@ -65,19 +65,7 @@ const ipfsImageToUrl = (img: string, background: number, brain: number) => {
   return null;
 };
 
-const keyStr =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-
-const triplet = (e1: number, e2: number, e3: number) =>
-  keyStr.charAt(e1 >> 2) +
-  keyStr.charAt(((e1 & 3) << 4) | (e2 >> 4)) +
-  keyStr.charAt(((e2 & 15) << 2) | (e3 >> 6)) +
-  keyStr.charAt(e3 & 63);
-
-const rgbDataURL = (r: number, g: number, b: number) =>
-  `data:image/gif;base64,R0lGODlhAQABAPAA${
-    triplet(0, r, g) + triplet(b, 255, 255)
-  }/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
+const rgbDataURL = `data:image/gif;base64,R0lGODlhAQABAPAAAO21Bv///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
 
 const Loophead = ({
   head,
@@ -100,7 +88,7 @@ const Loophead = ({
         <meta property="og:site_name" content="Loopheads" />
       </Head>
       <div className="text-center">
-        <h1 className="text-3xl font-bold mb-3 mt-3">{title}</h1>
+        <h1 className="mt-3 mb-3 text-3xl font-bold">{title}</h1>
         <div className="mb-3">
           <Link className="text-blue-500 hover:text-blue-700" href={`/`}>
             Go back
@@ -115,19 +103,19 @@ const Loophead = ({
             height={500}
             unoptimized
             placeholder="blur"
-            blurDataURL={rgbDataURL(237, 181, 6)}
+            blurDataURL={rgbDataURL}
           />
         ) : (
           "?"
         )}
 
-        <div className="text-lg font-bold mb-2 mt-3">Background</div>
+        <div className="mt-3 mb-2 text-lg font-bold">Background</div>
 
         <div className="inline-flex rounded-md shadow-sm">
           <ButtonGroupLink
             active={background === 0}
             href={`/${head.name}/0/${brain}`}
-            left
+            position="left"
           >
             0
           </ButtonGroupLink>
@@ -152,19 +140,19 @@ const Loophead = ({
           <ButtonGroupLink
             active={background === 4}
             href={`/${head.name}/4/${brain}`}
-            right
+            position="right"
           >
             4
           </ButtonGroupLink>
         </div>
 
-        <div className="text-lg font-bold mb-2 mt-3">Brain</div>
+        <div className="mt-3 mb-2 text-lg font-bold">Brain</div>
 
         <div className="inline-flex rounded-md shadow-sm" role="group">
           <ButtonGroupLink
             active={brain === 0}
             href={`/${head.name}/${background}/0`}
-            left
+            position="left"
           >
             0
           </ButtonGroupLink>
@@ -189,13 +177,13 @@ const Loophead = ({
           <ButtonGroupLink
             active={brain === 4}
             href={`/${head.name}/${background}/4`}
-            right
+            position="right"
           >
             4
           </ButtonGroupLink>
         </div>
 
-        <div className="text-lg font-bold mb-2 mt-3">Image URL</div>
+        <div className="mt-3 mb-2 text-lg font-bold">Image URL</div>
 
         <div className="mt-3">
           <a href={url || ""} className="text-blue-500 hover:text-blue-700">
